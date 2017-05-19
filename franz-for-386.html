@@ -1,0 +1,112 @@
+<title>Franz Lisp for 386 / BSD</title>
+<h1>Franz Lisp for 386 / BSD</h1>
+
+An implementation of Franz Lisp, Opus 38.92 (more or less) is 
+available for 386 and similar machines running NetBSD 0.9.  The same
+system should work, with perhaps a few modifications, in 386BSD
+and FreeBSD 1.1.5.1 (or similar).  Both source and executable
+images are available.
+
+<p> The executable images should work in newer versions of NetBSD
+and FreeBSD.  A proper port to FreeBSD 2.0 should appear at some
+point.  Linux is more difficult, but a number of problems have been
+fixed by <a href="franz-linux-patches.gz">patches</a> supplied by
+Bruno Haible.
+
+<p> If anyone does make it work for other operating systems or
+machines, or if anyone is interested in helping with a SPARC port,
+please let me <a href="mailto:j.dalton@ed.ac.uk">(j.dalton@ed.ac.uk)</a>
+know.  (Though I say SPARC, it's mostly the OS that will cause problems.)
+
+<p> 
+
+<h2>So, what is it?</h2>
+
+<p>
+  It's essentially the Berkeley (not Franz Inc) version of Franz
+  Lisp that was distributed with 4.2 BSD.  It is therefore appropriate
+  that it reappear now that BSD systems are becoming more generally
+  available.
+
+<p>
+  Franz Lisp (in case you don't know) is a pre-Common Lisp Lisp,
+  very similar to MacLisp.  It's smaller and simpler than Common
+  Lisp but doesn't have full lexical scoping.  The most accessible
+  reference is the original edition of Wilensky's <i>LISPcraft</i>,
+  but this distribution includes the full reference manual, also
+  accessible from lisp via the <TT>help</TT> function (which
+  doesn't "evaluate it's arguments", as we used to say).
+
+<p>
+  Anyway, this version of Franz has a couple of interesting features:
+
+ <ul>
+ <li> The compiler emits C rather than native assembler and is
+      consequently fairly portable.  The same compiler has been
+      used on 68k Suns, VAX 750s, and ICL Perqs running PNX.
+
+ <li> More of the interpreter is written in C than before.
+      There's still some 386 assembly code, but not very much.
+ </ul>
+
+The "C port" of the compiler and fasl, and some of the conversion from
+assembler to C, were done by Jeff Dalton.  Other changes for the 386,
+386BSD, and NetBSD were by Richard Tobin.
+
+
+<h2>How does one get it?</h2>
+
+Ftp
+<a href="ftp://ftp.cogsci.ed.ac.uk/pub/richard/franz-for-NetBSD/">here</a>,
+or via
+<a href="http://www.cogsci.ed.ac.uk/~richard/ftp-area/franz-for-NetBSD/">
+http</a>
+or ftp to:
+  <pre>
+    address: ftp.cogsci.ed.ac.uk
+       user: anonymous
+   password: your net address
+  directory: pub/richard/franz-for-NetBSD</pre>
+
+You should see the following files:
+
+<pre>
+  -rw-r--r--  1 richard   810784 Mar 16 12:11 franz.16Mar94.tar.gz
+  -rwxr-xr-x  1 richard   289794 Oct 23 17:03 lisp.gz
+  -rwxr-xr-x  1 richard   426285 Oct 23 17:04 liszt.gz
+</pre>
+
+<h2>What about installation?</h2>
+
+<p>
+  lisp.gz and liszt.gz are compressed, executable images for the
+  interpreter and compiler respectively.  They assume that the
+  lisp-library-directory is /usr/local/lib/lisp.
+
+<p>
+  franz.16Mar94.tar.gz contains the library and the other sources needed
+  to rebuild the system (if that's what you want to do).
+
+<p>
+  You will at least want to compile the library.  Put the (decompressed)
+  lisp and liszt somewhere in your $PATH, unpack the sources, make
+  /usr/local/lib/lisp be a symbolic link to the lisplib subdirectory
+  of the sources, cd to lisplib, and type "make all".
+
+<p>
+  You may also be able to rebuild the system.  If you want to do
+  this, I'd recommend trying the distributed executable images first,
+  because if they work you can use them when recompiling everything.
+  Some information about how to rebuild can be found in the ReadMe.386
+  file.  If you do rebuild, "make fast" and "make slow" both leave the
+  new interpreter and compiler in franz/i386/nlisp and cliszt/in-c/nliszt
+  respectively.
+
+<p>
+  If you're interested in modifying the system, you should e-mail
+  me, because I can tell you more about how to do it.
+
+<p>
+<Address>
+<A HREF="http://www.aiai.ed.ac.uk/~jeff/">Jeff Dalton</A>
+</Address>
